@@ -1,28 +1,28 @@
 # Ice-Paperbound
 
-**简体中文** | [English](README.en.md)
+**English** | [简体中文](README.zh-CN.md)
 
-**把网页做成一格可以打开的书架。**
+**A website you can take off the shelf.**
 
-这是一个与 AI 一起制作的交互实验：一屏书架，七本各有质感的小书。纸张的毛边、布面的纹理、半透明的描图纸和旧胶带，共同组成一个可以靠近、抽出、翻开的数字空间。
+An interactive experiment made in collaboration with AI: one shelf, seven books, each with its own material character. Worn paper edges, woven cloth, translucent tracing paper, and aged tape give the scene a tactile quality. Each book can be pulled out, turned toward you, and opened.
 
-它不是一张静态背景图。每本书都有独立的三维结构、封面和内页，可以作为个人网站、作品集或创作档案的目录形式。目前这个仓库提供的是独立的 **Studio 演示版**，书内文字均为虚构的材质研究笔记。
+This is not a static background image. Every book has its own 3D structure, cover, and interior. The shelf could become a navigation system for a personal website, portfolio, or creative archive. This repository contains the standalone **Studio demo**, with fictional material-study notes inside the books.
 
-![交互书架桌面预览](docs/preview.png)
+![Desktop preview of the interactive bookshelf](docs/preview.png)
 
-## 交互方式
+## Interactions
 
-- **悬停**：书本轻轻抬起，产生位移与转动。
-- **点击**：将书从架上抽出，转向正面封面。
-- **再次点击选中的书**：打开或合上封面。
-- **点击空白处 / 按 Esc**：把书放回原位。
-- **键盘操作**：使用 Tab 选中书本，按 Enter 操作。
+- **Hover** to lift and gently rotate a book.
+- **Click** to pull it from the shelf and reveal its front cover.
+- **Click the selected book again** to open or close its cover.
+- **Click an empty area or press Esc** to return it to the shelf.
+- **Use the keyboard**: Tab selects a book; Enter activates it.
 
-七本书分别是 `FORM`、`LIGHT`、`COLOR`、`MATTER`、`FIELD`、`NOTES` 和 `INDEX`，最右侧的小黄书也可以打开。
+The seven volumes are `FORM`, `LIGHT`, `COLOR`, `MATTER`, `FIELD`, `NOTES`, and `INDEX`. The small yellow book on the right opens too.
 
-## 本地运行
+## Run Locally
 
-需要 **Node.js 22.13 或更新版本**。
+Requires **Node.js 22.13 or newer**.
 
 ```sh
 git clone https://github.com/MegD1/Ice-Paperbound.git
@@ -31,31 +31,31 @@ npm ci
 npm run dev
 ```
 
-打开终端输出的本地地址即可。`/` 和 `/studio` 都会显示同一个独立书架，无需配置后端、数据库、账号或 API Key。
+Open the local address printed in your terminal. Both `/` and `/studio` display the same standalone bookshelf. No backend, database, account, or API key is required.
 
-## 技术与材质
+## Technology and Materials
 
-| 部分 | 实现方式 |
+| Part | Implementation |
 | --- | --- |
-| 页面 | React + TypeScript + Vite |
-| 三维场景 | 原生 Three.js，正交视角与独立书本模型 |
-| 动效 | GSAP 驱动抽出、旋转、翻开与归位 |
-| 装订结构 | 封面绕装订边旋转，书页块与封面分别建模 |
-| 材质 | 生成的材质图集 + Canvas 程序化纸纹、布纹与胶带 |
-| 兼容处理 | 减弱动态效果偏好支持，以及无 WebGL 时的 2D 回退 |
+| Application | React, TypeScript, and Vite |
+| 3D scene | Native Three.js, an orthographic camera, and individual book models |
+| Animation | GSAP controls extraction, rotation, cover opening, and return motion |
+| Binding | Covers pivot around their binding edges; covers and page blocks are modeled separately |
+| Materials | A generated texture atlas alongside procedural Canvas paper, cloth, and tape textures |
+| Fallbacks | Reduced-motion support and a 2D fallback when WebGL is unavailable |
 
-材质图集随仓库提供，位于 `public/textures/book-spines.webp`。运行时不依赖外部图片服务。
+The material atlas is included at `public/textures/book-spines.webp`. The running application does not depend on an external image service.
 
-## 修改内容
+## Customize the Shelf
 
-| 文件 | 用途 |
+| File | What to change |
 | --- | --- |
-| `src/content.ts` | 书脊名称、封面标题和内页短文 |
-| `src/BookshelfScene.tsx` | 书架构图、材质、灯光和交互 |
-| `src/BookBinding.ts` | 封面铰链与书页块几何结构 |
-| `src/styles.css` | 全屏舞台与基础样式 |
+| `src/content.ts` | Spine labels, cover titles, and short interior copy |
+| `src/BookshelfScene.tsx` | Composition, materials, lighting, and interactions |
+| `src/BookBinding.ts` | Cover hinges and page-block geometry |
+| `src/styles.css` | The full-screen stage and base styles |
 
-## 构建与检查
+## Build and Test
 
 ```sh
 npm run check
@@ -65,17 +65,17 @@ npm test
 npm run preview
 ```
 
-`check` 包含 TypeScript 检查和独立版本的文件边界检查。浏览器测试覆盖七本书的打开与关闭、键盘操作、两种桌面尺寸、Canvas 加载和 WebGL 回退。
+`check` runs TypeScript validation and checks the standalone edition's file boundaries. Browser tests cover opening and closing all seven books, keyboard input, two desktop sizes, Canvas rendering, and WebGL fallback.
 
-也可以使用本机已安装的 Chrome 运行测试：
+To run the tests with Google Chrome already installed on your computer:
 
 ```sh
 PLAYWRIGHT_CHANNEL=chrome npm test
 ```
 
-## 当前范围
+## Current Scope
 
-- 仅面向桌面端，画面最小宽度为 `1180px`，暂未适配手机。
-- 这是书架交互与材质实验，不包含完整的作品集详情页或内容管理系统。
-- 仓库仅包含匿名 Studio 版本，不包含个人简历、工作资料、原站页面或原站 Git 历史。
-- 尚未配置线上部署。仓库公开后可以查看和下载代码，但不会自动生成可访问的网站。
+- Designed for desktop, with a minimum layout width of `1180px`. This repository's demo is not yet adapted for mobile.
+- This is a bookshelf interaction and material study, not a complete portfolio or content management system.
+- Only the anonymous Studio edition is included. There is no personal resume, private work material, original-site page, or imported original-site Git history.
+- No deployment is configured. A public repository makes the code available to view and download; it does not automatically host a live website.
