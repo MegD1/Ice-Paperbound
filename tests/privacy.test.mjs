@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const allowed = new Set([
-  ".gitignore", "README.md", "index.html", "package.json", "package-lock.json",
+  ".gitignore", "README.md", "README.en.md", "index.html", "package.json", "package-lock.json",
   "tsconfig.json", "vite.config.ts", "playwright.config.ts",
   "src/main.tsx", "src/BookshelfScene.tsx", "src/BookBinding.ts", "src/content.ts",
   "src/styles.css", "public/textures/book-spines.webp", "docs/preview.png",
@@ -27,6 +27,8 @@ walk(root);
 test("only the explicitly approved standalone files are present", () => {
   assert.deepEqual(files.filter(file => !allowed.has(file)), []);
   assert.ok(files.includes("public/textures/book-spines.webp"));
+  assert.ok(files.includes("README.md"));
+  assert.ok(files.includes("README.en.md"));
   assert.ok(!files.some(file => /\.(pdf|docx|pptx|pem|key)$/i.test(file)));
 });
 

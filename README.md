@@ -1,4 +1,6 @@
-# Ice-material-library-studio
+# Ice-Paperbound
+
+**简体中文** | [English](README.en.md)
 
 **把网页做成一格可以打开的书架。**
 
@@ -23,8 +25,8 @@
 需要 **Node.js 22.13 或更新版本**。
 
 ```sh
-git clone https://github.com/MegD1/Ice-material-library-studio.git
-cd Ice-material-library-studio
+git clone https://github.com/MegD1/Ice-Paperbound.git
+cd Ice-Paperbound
 npm ci
 npm run dev
 ```
